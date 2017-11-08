@@ -1,0 +1,125 @@
+package cn.hacz.edu.encrypt;
+
+import org.apache.commons.codec.binary.Base64;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
+
+/**
+ * DES加密解密
+ * 
+ * @author lkw
+ *
+ */
+public class DES {
+
+	private final static byte[] iv = { 1, 2, 3, 4, 5, 6, 7, 8 };
+	private final static String DESPKC = "DES/CBC/PKCS5Padding";
+	private final static String DESTYPE = "DES";
+	public final static String key = "asbapp!@";
+
+	public static void main(String[] args) {
+		try {
+			System.out.println(decrypt("x0Gf516B3Yea23j+lOpaBBkYS3DzattgLDLXrvGsqX8H2CzsLXFeuv2JDyAIonC5UMyEUL28cBosG2WoyXQJyw=="));
+			String s = decrypt(
+					"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");
+			System.out.println(s);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * DES加密
+	 * 
+	 * @param data
+	 *            加密数据
+	 * @return
+	 * @throws Exception
+	 */
+	public static String encrypt(String data) throws Exception {
+		return encrypt(data, key);
+	}
+
+	/**
+	 * 根据键值进行加密
+	 * 
+	 * @param data
+	 * @param key
+	 *            加密键byte数组
+	 * @return
+	 * @throws Exception
+	 */
+	public static String encrypt(String data, String key) throws Exception {
+		byte[] bt = encrypt(Base64.encodeBase64(data.getBytes("UTF-8")), key.getBytes("UTF-8"));
+		byte[] buf = Base64.encodeBase64String(bt).getBytes("UTF-8");
+		// return Base64.encodeBase64String(bt);
+		return new String(buf, "UTF8");
+	}
+
+	public static String decrypt(String data) throws IOException, Exception {
+		return decrypt(data, key);
+	}
+
+	/**
+	 * Description 根据键值进行解密
+	 * 
+	 * @param data
+	 * @param key
+	 *            加密键byte数组
+	 * @return
+	 * @throws IOException
+	 * @throws Exception
+	 */
+
+	public static String decrypt(String data, String key) throws IOException, Exception {
+		if (data == null)
+			return null;
+		byte[] bt = decrypt(Base64.decodeBase64(data), key.getBytes());
+		byte[] buf = Base64.decodeBase64(bt);
+		return new String(buf, "UTF8");
+	}
+
+	/**
+	 * Description 根据键值进行加密
+	 * 
+	 * @param data
+	 * @param key
+	 *            加密键byte数组
+	 * @return
+	 * @throws Exception
+	 */
+	private static byte[] encrypt(byte[] data, byte[] key) throws Exception {
+		IvParameterSpec zeroIv = new IvParameterSpec(iv);
+		SecretKeySpec seckey = new SecretKeySpec(key, DESTYPE);
+		Cipher cipher = Cipher.getInstance(DESPKC);
+		cipher.init(Cipher.ENCRYPT_MODE, seckey, zeroIv);
+		byte[] encryptedData = cipher.doFinal(data);
+		return encryptedData;
+	}
+
+	/**
+	 * Description 根据键值进行解密
+	 * 
+	 * @param data
+	 * @param key
+	 *            加密键byte数组
+	 * @return
+	 * @throws Exception
+	 */
+	private static byte[] decrypt(byte[] data, byte[] key) throws Exception {
+		IvParameterSpec zeroIv = new IvParameterSpec(iv);
+		SecretKeySpec seckey = new SecretKeySpec(key, DESTYPE);
+		Cipher cipher = Cipher.getInstance(DESPKC);
+		cipher.init(Cipher.DECRYPT_MODE, seckey, zeroIv);
+		byte decryptedData[] = cipher.doFinal(data);
+		return decryptedData;
+	}
+
+}

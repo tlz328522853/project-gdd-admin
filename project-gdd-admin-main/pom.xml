@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.7.RELEASE</version>
+		<relativePath />
+		<!-- lookup parent from repository -->
+	</parent>
+	<groupId>cn.hacz.edu</groupId>
+	<artifactId>project-gdd-admin-main</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>project-gdd-admin-main</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>cn.hacz.edu</groupId>
+			<artifactId>project-gdd-base-jar</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.hacz.edu</groupId>
+			<artifactId>project-gdd-base-util</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.hacz.edu</groupId>
+			<artifactId>project-gdd-interface</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.hacz.edu</groupId>
+			<artifactId>project-gdd-admin-modules-edu-school</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<!-- The plugin rewrites your manifest -->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- maven compiler plugin版本必须正确否则下面设置的JDK版本不起作用 -->
+				<configuration>
+					<!-- 指定该Main Class为全局的唯一入口 -->
+					<source>1.8</source>
+					<target>1.8</target>
+					<mainClass>cn.hacz.edu.Application</mainClass>
+					<layout>ZIP</layout>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<!--可以把依赖的包都打包到生成的Jar包中 -->
+							<goal>repackage</goal>
+						</goals>
+						<!--可以生成不含依赖包的不可执行Jar包 -->
+						<!-- configuration> <classifier>exec</classifier> </configuration> -->
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

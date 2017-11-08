@@ -1,0 +1,26 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>cn.hacz.edu</groupId>
+	<artifactId>project-gdd-admin</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<modules>
+		<!--** 基础模块Jar 必须 + 程序入口 -->
+		<module>project-gdd-admin-main</module>
+		<!--** 基础模块Jar 必须 + 程序依赖 -->
+		<module>project-gdd-base-jar</module>
+		<!--** 基础模块Jar 必须 + 程序的工具类 -->
+		<module>project-gdd-base-util</module>
+		<!--** 基础模块Jar 必须 + 程序的接口调用 -->
+		<module>project-gdd-interface</module>
+		<!--** 基础模块Jar 必须 + 程序的接口调用 -->
+		<module>project-gdd-base-jdbc</module>
+		<module>project-gdd-admin-modules-edu</module>
+		<module>project-gdd-admin-rbac_base</module>
+		<module>project-gdd-admin-rbac</module>
+	</modules>
+	<build>
+		<defaultGoal>compile</defaultGoal>
+	</build>
+</project>
