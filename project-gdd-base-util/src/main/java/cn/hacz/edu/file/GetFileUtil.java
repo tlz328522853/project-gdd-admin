@@ -58,5 +58,23 @@ public class GetFileUtil {
 		System.out.println(lines);
 		return lines;
 	}
+	/**
+	 * @Title getReqUrl
+	 * @param name
+	 * @param keyWord
+	 * @throws IOException
+	 * @date 日期:2017年11月10日 时间:上午11:08:44
+	 * @return String
+	 * @Description 功能：
+	 */
+	private String getReqUrl(String name, String keyWord) throws IOException {
+		URL m = this.getClass().getResource("/");
+		Properties pro = new Properties();
+		FileInputStream in = new FileInputStream(m.getPath() + "/" + name + ".properties");
+		pro.load(in);
+		String result = pro.getProperty(keyWord);
+		in.close();
+		return result;
+	}
 
 }
